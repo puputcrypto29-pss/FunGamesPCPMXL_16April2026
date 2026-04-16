@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PCPM XL PADEL FUN GAMES - 16 April 2026</title>
+  <style>
+    :root {
+      --border: #cfe0ff;
+      --text: #153a6b;
+      --muted: #6887b3;
+      --blue-strong: #1d70e6;
+      --shadow: 0 14px 40px rgba(30, 96, 196, 0.10);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top left, #ffffff 0%, #eef5ff 38%, #e6f0ff 100%);
+    }
+    .page { max-width: 1440px; margin: 0 auto; padding: 28px; }
+    .hero {
+      position: relative; padding: 36px 36px 34px; border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(244,248,255,0.96), rgba(237,245,255,0.88));
+      border-radius: 34px; box-shadow: var(--shadow); overflow: hidden;
+    }
+    .hero::before, .hero::after {
+      content: ""; position: absolute; border-radius: 999px;
+      background: linear-gradient(180deg, rgba(101,169,255,.18), rgba(101,169,255,.05));
+    }
+    .hero::before { width: 180px; height: 180px; top: -60px; right: -45px; }
+    .hero::after { width: 120px; height: 120px; bottom: -32px; left: 48%; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px;
+      background: rgba(230, 240, 255, 0.92); border: 1px solid var(--border);
+      border-radius: 999px; font-weight: 700; color: var(--blue-strong);
+      letter-spacing: 0.02em; margin-bottom: 18px; font-size: 15px;
+    }
+    .hero h1 {
+      margin: 0; font-size: clamp(34px, 5vw, 66px); line-height: 1.02;
+      letter-spacing: -0.03em; max-width: 1080px;
+    }
+    .hero p {
+      max-width: 980px; margin: 16px 0 26px; color: var(--muted);
+      font-size: clamp(16px, 1.6vw, 20px); line-height: 1.6;
+    }
+    .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+    .stat-card {
+      background: rgba(255,255,255,0.92); border: 1px solid var(--border); border-radius: 24px;
+      padding: 20px 20px 18px; box-shadow: 0 10px 24px rgba(29,112,230,.06);
+    }
+    .stat-label {
+      color: var(--muted); font-size: 14px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 10px;
+    }
+    .stat-value {
+      font-size: clamp(28px, 3vw, 42px); font-weight: 800; color: var(--blue-strong); letter-spacing: -0.03em;
+    }
+    .controls { margin-top: 26px; display: grid; grid-template-columns: 1.2fr 1fr auto auto; gap: 16px; }
+    .input, .select, .btn {
+      height: 64px; border-radius: 22px; border: 1px solid var(--border); background: rgba(255,255,255,0.92);
+      padding: 0 22px; font-size: 18px; color: var(--text); box-shadow: 0 8px 22px rgba(30,96,196,0.05);
+    }
+    .btn {
+      cursor: pointer; font-weight: 800; background: linear-gradient(180deg, #2e86f1, #1f6fdd);
+      color: white; border: none; min-width: 190px;
+    }
+    .btn.secondary { background: rgba(255,255,255,0.92); color: var(--blue-strong); border: 1px solid var(--border); }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .section-title { margin: 34px 0 8px; font-size: clamp(28px, 3vw, 44px); letter-spacing: -0.03em; }
+    .section-subtitle { color: var(--muted); margin: 0 0 18px; font-size: 18px; }
+    .legend { display: flex; gap: 12px; flex-wrap: wrap; }
+    .chip {
+      border-radius: 999px; padding: 10px 16px; background: rgba(230,240,255,.95);
+      border: 1px solid var(--border); color: var(--blue-strong); font-weight: 700;
+    }
+    .performers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-bottom: 18px; }
+    .performer-card {
+      position: relative; overflow: hidden; min-height: 208px; padding: 22px; border-radius: 28px;
+      border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(246,250,255,0.92));
+      box-shadow: 0 10px 28px rgba(30,96,196,.07);
+    }
+    .performer-card::after {
+      content: ""; position: absolute; width: 140px; height: 140px; right: -28px; bottom: -38px;
+      border-radius: 50%; background: rgba(141, 184, 255, 0.16);
+    }
+    .rank-pill {
+      display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; padding: 8px 14px;
+      font-weight: 800; background: rgba(199,221,255,.65); color: var(--blue-strong); margin-bottom: 18px;
+    }
+    .performer-name { font-size: 30px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 4px; position: relative; z-index: 1; }
+    .performer-court { color: var(--muted); font-size: 16px; margin-bottom: 18px; position: relative; z-index: 1; }
+    .performer-meta { position: relative; z-index: 1; display: flex; gap: 16px; flex-wrap: wrap; color: var(--text); font-weight: 700; font-size: 15px; }
+    .grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 20px; align-items: start; }
+    .card {
+      border: 1px solid var(--border); border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(246,250,255,.92));
+      box-shadow: 0 10px 28px rgba(30,96,196,.07); overflow: hidden;
+    }
+    .card-head { padding: 20px 22px 0; }
+    .card h3 { margin: 0; font-size: 28px; letter-spacing: -0.02em; }
+    .card .sub { color: var(--muted); margin-top: 6px; font-size: 16px; }
+    .leaderboard-wrap { padding: 18px 18px 22px; overflow-x: auto; }
+    table { width: 100%; border-collapse: separate; border-spacing: 0 10px; min-width: 900px; }
+    thead th {
+      text-align: left; color: var(--muted); font-size: 13px; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0 12px 6px;
+    }
+    tbody tr { background: rgba(235,244,255,.68); }
+    tbody td {
+      padding: 15px 12px; font-size: 15px; border-top: 1px solid #d7e7ff; border-bottom: 1px solid #d7e7ff;
+    }
+    tbody td:first-child { border-left: 1px solid #d7e7ff; border-top-left-radius: 16px; border-bottom-left-radius: 16px; }
+    tbody td:last-child { border-right: 1px solid #d7e7ff; border-top-right-radius: 16px; border-bottom-right-radius: 16px; }
+    .player-name { font-weight: 800; color: var(--text); }
+    .action-group { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tiny-btn {
+      border: none; border-radius: 12px; padding: 9px 12px; font-weight: 800; cursor: pointer;
+      color: white; background: linear-gradient(180deg, #4aa0ff, #1d70e6); box-shadow: 0 8px 18px rgba(29,112,230,.16);
+    }
+    .tiny-btn.ghost { background: #e8f2ff; color: var(--blue-strong); box-shadow: none; }
+    .tabs { display: flex; gap: 10px; flex-wrap: wrap; padding: 18px 18px 0; }
+    .tab {
+      border: 1px solid var(--border); background: rgba(232,242,255,.8); color: var(--blue-strong);
+      padding: 11px 16px; border-radius: 999px; font-weight: 800; cursor: pointer;
+    }
+    .tab.active { background: linear-gradient(180deg, #4aa0ff, #1d70e6); color: white; border-color: transparent; }
+    .matches-list { padding: 18px 18px 22px; display: grid; gap: 12px; max-height: 1000px; overflow-y: auto; }
+    .match-card { border: 1px solid var(--border); background: rgba(239,246,255,.9); border-radius: 20px; padding: 16px; }
+    .match-head { display: flex; justify-content: space-between; gap: 10px; align-items: center; margin-bottom: 12px; flex-wrap: wrap; }
+    .match-no { font-size: 13px; letter-spacing: .12em; color: var(--muted); text-transform: uppercase; font-weight: 800; }
+    .match-court {
+      border-radius: 999px; padding: 7px 12px; border: 1px solid var(--border); background: white;
+      color: var(--blue-strong); font-weight: 800; font-size: 13px;
+    }
+    .versus { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .vs-team {
+      border-radius: 16px; background: white; border: 1px solid var(--border); padding: 14px; font-weight: 800;
+      min-height: 58px; display: flex; align-items: center; justify-content: center; text-align: center;
+    }
+    .vs-badge { font-weight: 900; color: var(--blue-strong); letter-spacing: 0.14em; font-size: 14px; }
+    .match-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .empty { padding: 24px; color: var(--muted); text-align: center; font-weight: 700; }
+    @media (max-width: 1180px) {
+      .grid { grid-template-columns: 1fr; }
+      .performers { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .controls { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 760px) {
+      .page { padding: 16px; }
+      .hero { padding: 22px; border-radius: 24px; }
+      .stats { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .controls { grid-template-columns: 1fr; }
+      .input, .select, .btn { height: 56px; font-size: 16px; }
+      .versus { grid-template-columns: 1fr; }
+      .card h3 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="pill">🎾 PCPM XL COMMUNITY MATCH DAY</div>
+      <h1>PCPM XL PADEL FUN GAMES - 16 April 2026</h1>
+      <p>
+        Interactive Americano-style leaderboard website with 10 internal matches for each court.
+        Rankings stay integrated across all courts and points are recorded per individual player.
+      </p>
+      <div class="stats">
+        <div class="stat-card"><div class="stat-label">Total Courts</div><div class="stat-value">3</div></div>
+        <div class="stat-card"><div class="stat-label">Total Players</div><div class="stat-value">28</div></div>
+        <div class="stat-card"><div class="stat-label">Matches</div><div class="stat-value">10 / Court</div></div>
+        <div class="stat-card"><div class="stat-label">Mode</div><div class="stat-value">Integrated Board</div></div>
+      </div>
+    </section>
+
+    <section class="controls">
+      <input id="searchInput" class="input" type="text" placeholder="Search player name..." />
+      <select id="courtFilter" class="select">
+        <option value="All Courts">All Courts</option>
+        <option value="Court 1">Court 1</option>
+        <option value="Court 2">Court 2</option>
+        <option value="Court 3">Court 3</option>
+      </select>
+      <button class="btn secondary" id="demoBtn">Load Demo Scores</button>
+      <button class="btn" id="resetBtn">Reset All Scores</button>
+    </section>
+
+    <div class="topbar">
+      <div>
+        <h2 class="section-title">Top Performers</h2>
+        <p class="section-subtitle">Automatically updates based on points, wins, matches played, and win rate.</p>
+      </div>
+      <div class="legend">
+        <div class="chip">Internal Matches Only</div>
+        <div class="chip">Individual Leaderboard</div>
+      </div>
+    </div>
+
+    <section id="performers" class="performers"></section>
+
+    <section class="grid">
+      <div class="card">
+        <div class="card-head">
+          <h3>Integrated Leaderboard</h3>
+          <div class="sub">All courts are combined in one ranking table. Points are tracked per player.</div>
+        </div>
+        <div class="leaderboard-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Rank</th><th>Player</th><th>Court</th><th>Points</th><th>Wins</th><th>Losses</th><th>Played</th><th>Win Rate</th><th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3>Match Schedule</h3>
+          <div class="sub">10 matches per court. Click a side to award both players on that side a win and +3 points.</div>
+        </div>
+        <div class="tabs" id="tabs"></div>
+        <div class="matches-list" id="matchesList"></div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const basePlayers = [{"name": "Nia", "court": "Court 1", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Andija", "court": "Court 1", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Tiara", "court": "Court 1", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Muna", "court": "Court 1", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Ten", "court": "Court 1", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Albert", "court": "Court 1", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Vincent", "court": "Court 1", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Ramy", "court": "Court 1", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Jopan", "court": "Court 1", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Eriqo", "court": "Court 1", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Marsya", "court": "Court 2", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Ami", "court": "Court 2", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Mei", "court": "Court 2", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Alaia", "court": "Court 2", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Prims", "court": "Court 2", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Aidan", "court": "Court 2", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Moreno", "court": "Court 2", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Bagas", "court": "Court 2", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Nabiel", "court": "Court 2", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Putri", "court": "Court 3", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Baariq", "court": "Court 3", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Laura", "court": "Court 3", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Fira", "court": "Court 3", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Nopal", "court": "Court 3", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Haykal", "court": "Court 3", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Rega", "court": "Court 3", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Andin", "court": "Court 3", "points": 0, "wins": 0, "losses": 0, "played": 0}, {"name": "Bimo", "court": "Court 3", "points": 0, "wins": 0, "losses": 0, "played": 0}];
+    const matchesByCourt = {"Court 1": [{"matchNo": 1, "teamA": ["Nia", "Andija"], "teamB": ["Tiara", "Muna"]}, {"matchNo": 2, "teamA": ["Ten", "Albert"], "teamB": ["Vincent", "Ramy"]}, {"matchNo": 3, "teamA": ["Jopan", "Eriqo"], "teamB": ["Nia", "Tiara"]}, {"matchNo": 4, "teamA": ["Andija", "Muna"], "teamB": ["Ten", "Vincent"]}, {"matchNo": 5, "teamA": ["Albert", "Ramy"], "teamB": ["Jopan", "Nia"]}, {"matchNo": 6, "teamA": ["Eriqo", "Tiara"], "teamB": ["Andija", "Vincent"]}, {"matchNo": 7, "teamA": ["Muna", "Ten"], "teamB": ["Albert", "Jopan"]}, {"matchNo": 8, "teamA": ["Ramy", "Eriqo"], "teamB": ["Nia", "Andija"]}, {"matchNo": 9, "teamA": ["Tiara", "Vincent"], "teamB": ["Muna", "Ramy"]}, {"matchNo": 10, "teamA": ["Ten", "Jopan"], "teamB": ["Albert", "Eriqo"]}], "Court 2": [{"matchNo": 1, "teamA": ["Marsya", "Ami"], "teamB": ["Mei", "Alaia"]}, {"matchNo": 2, "teamA": ["Prims", "Aidan"], "teamB": ["Moreno", "Bagas"]}, {"matchNo": 3, "teamA": ["Nabiel", "Marsya"], "teamB": ["Mei", "Prims"]}, {"matchNo": 4, "teamA": ["Ami", "Alaia"], "teamB": ["Aidan", "Moreno"]}, {"matchNo": 5, "teamA": ["Bagas", "Nabiel"], "teamB": ["Marsya", "Mei"]}, {"matchNo": 6, "teamA": ["Prims", "Alaia"], "teamB": ["Ami", "Bagas"]}, {"matchNo": 7, "teamA": ["Aidan", "Nabiel"], "teamB": ["Moreno", "Marsya"]}, {"matchNo": 8, "teamA": ["Mei", "Bagas"], "teamB": ["Alaia", "Prims"]}, {"matchNo": 9, "teamA": ["Ami", "Nabiel"], "teamB": ["Aidan", "Marsya"]}, {"matchNo": 10, "teamA": ["Moreno", "Mei"], "teamB": ["Bagas", "Alaia"]}], "Court 3": [{"matchNo": 1, "teamA": ["Putri", "Baariq"], "teamB": ["Laura", "Fira"]}, {"matchNo": 2, "teamA": ["Nopal", "Haykal"], "teamB": ["Rega", "Andin"]}, {"matchNo": 3, "teamA": ["Bimo", "Putri"], "teamB": ["Laura", "Nopal"]}, {"matchNo": 4, "teamA": ["Baariq", "Fira"], "teamB": ["Haykal", "Rega"]}, {"matchNo": 5, "teamA": ["Andin", "Bimo"], "teamB": ["Putri", "Laura"]}, {"matchNo": 6, "teamA": ["Nopal", "Rega"], "teamB": ["Baariq", "Haykal"]}, {"matchNo": 7, "teamA": ["Fira", "Andin"], "teamB": ["Bimo", "Putri"]}, {"matchNo": 8, "teamA": ["Laura", "Haykal"], "teamB": ["Nopal", "Baariq"]}, {"matchNo": 9, "teamA": ["Rega", "Bimo"], "teamB": ["Fira", "Laura"]}, {"matchNo": 10, "teamA": ["Andin", "Putri"], "teamB": ["Haykal", "Nopal"]}]};
+    let players = JSON.parse(JSON.stringify(basePlayers));
+    let selectedCourt = "Court 1";
+
+    function cloneBase() {
+      return JSON.parse(JSON.stringify(basePlayers));
+    }
+
+    function getWinRate(player) {
+      if (!player.played) return 0;
+      return Math.round((player.wins / player.played) * 100);
+    }
+
+    function sortPlayers(list) {
+      return [...list].sort((a, b) =>
+        b.points - a.points ||
+        b.wins - a.wins ||
+        getWinRate(b) - getWinRate(a) ||
+        a.name.localeCompare(b.name)
+      );
+    }
+
+    function filteredPlayers() {
+      const q = document.getElementById("searchInput").value.trim().toLowerCase();
+      const filter = document.getElementById("courtFilter").value;
+      return sortPlayers(players).filter(player => {
+        const matchesFilter = filter === "All Courts" || player.court === filter;
+        const matchesQuery = !q || player.name.toLowerCase().includes(q);
+        return matchesFilter && matchesQuery;
+      });
+    }
+
+    function findPlayer(name) {
+      return players.find(p => p.name === name);
+    }
+
+    function awardWinToSide(team, opponent) {
+      team.forEach(name => {
+        const p = findPlayer(name);
+        if (p) {
+          p.points += 3;
+          p.wins += 1;
+          p.played += 1;
+        }
+      });
+      opponent.forEach(name => {
+        const p = findPlayer(name);
+        if (p) {
+          p.losses += 1;
+          p.played += 1;
+        }
+      });
+      rerender();
+    }
+
+    function addPoint(name) {
+      const p = findPlayer(name);
+      if (!p) return;
+      p.points += 1;
+      rerender();
+    }
+
+    function removePoint(name) {
+      const p = findPlayer(name);
+      if (!p) return;
+      p.points -= 1;
+      rerender();
+    }
+
+    function renderLeaderboard() {
+      const body = document.getElementById("leaderboardBody");
+      const rows = filteredPlayers();
+      if (!rows.length) {
+        body.innerHTML = '<tr><td colspan="9"><div class="empty">No players match your current filter.</div></td></tr>';
+        return;
+      }
+      body.innerHTML = rows.map((player, index) => `
+        <tr>
+          <td><strong>#${index + 1}</strong></td>
+          <td><div class="player-name">${player.name}</div></td>
+          <td>${player.court}</td>
+          <td><strong>${player.points}</strong></td>
+          <td>${player.wins}</td>
+          <td>${player.losses}</td>
+          <td>${player.played}</td>
+          <td>${getWinRate(player)}%</td>
+          <td>
+            <div class="action-group">
+              <button class="tiny-btn" onclick="addPoint('${player.name.replace(/'/g, "\\'")}')">+1 pt</button>
+              <button class="tiny-btn ghost" onclick="removePoint('${player.name.replace(/'/g, "\\'")}')">-1 pt</button>
+            </div>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    function renderPerformers() {
+      const container = document.getElementById("performers");
+      const top3 = sortPlayers(players).slice(0, 3);
+      container.innerHTML = top3.map((player, i) => `
+        <div class="performer-card">
+          <div class="rank-pill">${["🥇 Rank 1", "🥈 Rank 2", "🥉 Rank 3"][i]}</div>
+          <div class="performer-name">${player.name}</div>
+          <div class="performer-court">${player.court}</div>
+          <div class="performer-meta">
+            <span>${player.points} pts</span>
+            <span>${player.wins} wins</span>
+            <span>${player.played} played</span>
+            <span>${getWinRate(player)}% win rate</span>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function renderTabs() {
+      const tabs = document.getElementById("tabs");
+      const courts = Object.keys(matchesByCourt);
+      tabs.innerHTML = courts.map(court => `
+        <button class="tab ${court === selectedCourt ? "active" : ""}" onclick="selectCourt('${court}')">${court}</button>
+      `).join("");
+    }
+
+    function renderMatches() {
+      const list = document.getElementById("matchesList");
+      const matches = matchesByCourt[selectedCourt] || [];
+      list.innerHTML = matches.map(match => {
+        const teamAArg = JSON.stringify(match.teamA);
+        const teamBArg = JSON.stringify(match.teamB);
+        const teamALabel = match.teamA.join(" & ");
+        const teamBLabel = match.teamB.join(" & ");
+        return `
+          <div class="match-card">
+            <div class="match-head">
+              <div class="match-no">Match ${match.matchNo}</div>
+              <div class="match-court">${selectedCourt}</div>
+            </div>
+            <div class="versus">
+              <div class="vs-team">${teamALabel}</div>
+              <div class="vs-badge">VS</div>
+              <div class="vs-team">${teamBLabel}</div>
+            </div>
+            <div class="match-actions">
+              <button class="tiny-btn" onclick='awardWinToSide(${teamAArg}, ${teamBArg})'>${teamALabel} Win</button>
+              <button class="tiny-btn ghost" onclick='awardWinToSide(${teamBArg}, ${teamAArg})'>${teamBLabel} Win</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function selectCourt(court) {
+      selectedCourt = court;
+      renderTabs();
+      renderMatches();
+    }
+
+    function demoScores() {
+      players = cloneBase();
+      const demos = [
+        ["Nia", "Andija"], ["Ten", "Albert"], ["Eriqo", "Tiara"],
+        ["Marsya", "Ami"], ["Prims", "Aidan"], ["Bagas", "Nabiel"],
+        ["Putri", "Baariq"], ["Nopal", "Haykal"], ["Rega", "Andin"]
+      ];
+      demos.forEach(side => {
+        const opp = [];
+        awardWinToSide(side, opp);
+      });
+      rerender();
+    }
+
+    function resetScores() {
+      players = cloneBase();
+      rerender();
+    }
+
+    function rerender() {
+      renderPerformers();
+      renderLeaderboard();
+      renderTabs();
+      renderMatches();
+    }
+
+    document.getElementById("searchInput").addEventListener("input", renderLeaderboard);
+    document.getElementById("courtFilter").addEventListener("change", renderLeaderboard);
+    document.getElementById("demoBtn").addEventListener("click", demoScores);
+    document.getElementById("resetBtn").addEventListener("click", resetScores);
+
+    rerender();
+  </script>
+</body>
+</html>
